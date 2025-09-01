@@ -22,7 +22,7 @@ const TimerComponent = () => {
 
             return()=>{
                 clearInterval(interval);
-                console.log("🧹 Timer stopped");
+                console.log("Timer stopped");
             }
         },[])
         return <p>Timer is running... (check console)</p>;
