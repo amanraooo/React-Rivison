@@ -31,10 +31,10 @@ function App() {
     ));
   }
 
-  function submitHandler(event){
-      event.preventDefault();
-      console.log("Priniting form data")
-            console.log(formData)
+  function submitHandler(event) {
+    event.preventDefault();
+    console.log("Priniting form data")
+    console.log(formData)
   }
 
   return (
@@ -273,9 +273,9 @@ function App() {
 
         </fieldset>
 
-      <button
-      className=" py-1 px-3 text-white font-bold bg-blue-500 hover:bg-blue-600 rounded-sm"
-      >Save</button>
+        <button
+          className=" py-1 px-3 text-white font-bold bg-blue-500 hover:bg-blue-600 rounded-sm"
+        >Save</button>
       </form>
     </div>
 
