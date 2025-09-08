@@ -98,10 +98,10 @@ function App() {
           className="outline mt-1 mb-2"
         >
 
-          <option>India</option>
-          <option>Japan</option>
-          <option>Bhutan</option>
-          <option>Malaysia</option>
+          <option value="India">India</option>
+          <option value="Japan">Japan</option>
+          <option value="Bhutan">Bhutan</option>
+          <option value="Malaysia">Malaysia</option>
 
         </select>
         <br />
