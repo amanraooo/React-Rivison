@@ -96,7 +96,6 @@ function App() {
           id="country"
           onChange={changeHandler}
           className="outline mt-1 mb-2"
-
         >
 
           <option>India</option>
@@ -189,7 +188,6 @@ function App() {
           </div>
           <br />
 
-
           <div className="flex">
             <input
               type="checkbox"
@@ -208,8 +206,6 @@ function App() {
             </div>
           </div>
           <br />
-
-
 
           <div className="flex">
             <input
@@ -274,9 +270,11 @@ function App() {
         </fieldset>
 
         <button
-          className=" py-1 px-3 text-white font-bold bg-blue-500 hover:bg-blue-600 rounded-sm"
+          className="mt-2 py-1 px-3 text-white font-bold bg-blue-500 hover:bg-blue-600 rounded-sm"
         >Save</button>
+
       </form>
+
     </div>
 
   );
