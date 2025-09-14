@@ -1,8 +1,10 @@
 import React from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useState } from "react";
+import {toast} from 'react-hot-toast'
+import { Link, useNavigate } from "react-router-dom";
 
-const SignupForm = () => {
+const SignupForm = ({setIsLoggedIn}) => {
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -12,13 +14,31 @@ const SignupForm = () => {
   });
 
 const [ShowPassword, setShowPassword] = useState(false);
-
+const [confirmPassword, setConfirmPassword] = useState(false)
   function changeHandler(event) {
     setFormData((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,
     }));
   }
+
+    const navigate = useNavigate();
+  
+  function submitHandler(e){
+    e.preventDefault();
+    if(formData.password != formData.confirmPassword){
+      toast.error("Password not matching")
+      return;
+    }
+    setIsLoggedIn(true);
+    toast.success("Account Created")
+    const accdeatils ={
+      ...formData
+    }
+    console.log("acc deatils" , accdeatils);
+    navigate('/dashboard')
+  }
+
 
   return (
     <div>
@@ -29,7 +49,7 @@ const [ShowPassword, setShowPassword] = useState(false);
         <button>Instructor</button>
       </div>
 
-      <form>
+      <form onSubmit={submitHandler}>
 
         {/* first name and last name */}
         <div>
@@ -104,14 +124,14 @@ const [ShowPassword, setShowPassword] = useState(false);
           </p>
           <input
             required
-            type={ShowPassword ? ("text") : ("password")}
+            type={confirmPassword ? ("text") : ("password")}
             value={formData.confirmPassword}
             name="confirmPassword"
             onChange={changeHandler}
             placeholder="Confirm Password"
           />
-          <span onClick={() => setShowPassword((prev) => !prev)}>
-                      {ShowPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+          <span onClick={() => setConfirmPassword((prev) => !prev)}>
+                      {confirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                     </span>
             </label>
 
