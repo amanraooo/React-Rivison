@@ -13,6 +13,6 @@ const Login = ({ setIsLoggedIn }) => {
       formtype="login"
     />
   );
-};
+}; 
 
 export default Login;
