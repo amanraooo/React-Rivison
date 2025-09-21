@@ -51,10 +51,11 @@ const SignupForm = ({ setIsLoggedIn }) => {
         {/* first name and last name */}
         <div>
           <label>
-            <p>
-              First Name <sup>*</sup>
+            <p className="text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]">
+              First Name <sup className="text-pink-200">*</sup>
             </p>
             <input
+             className="bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]"
               required
               type="text"
               name="firstname"
@@ -65,10 +66,11 @@ const SignupForm = ({ setIsLoggedIn }) => {
           </label>
 
           <label>
-            <p>
-              Last Name <sup>*</sup>
+            <p className="text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]">
+              Last Name <sup className="text-pink-200">*</sup>
             </p>
             <input
+             className="bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]"
               required
               type="text"
               name="lastname"
@@ -81,10 +83,11 @@ const SignupForm = ({ setIsLoggedIn }) => {
 
         {/* email address */}
         <label>
-          <p>
-            Email Address <sup>*</sup>
+          <p className="text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]">
+            Email Address <sup className="text-pink-200">*</sup>
           </p>
           <input
+           className="bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]"
             required
             type="email"
             value={formData.email}
@@ -97,11 +100,12 @@ const SignupForm = ({ setIsLoggedIn }) => {
         {/*create password and confirm password */}
         <div>
           {/* create password */}
-          <label>
-            <p>
-              Create Password <sup>*</sup>
+          <label className="w-full relative">
+            <p className="text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]">
+              Create Password <sup className="text-pink-200">*</sup>
             </p>
             <input
+             className="bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]"
               required
               type={ShowPassword ? "text" : "password"}
               value={formData.password}
@@ -109,17 +113,20 @@ const SignupForm = ({ setIsLoggedIn }) => {
               onChange={changeHandler}
               placeholder="Enter Password"
             />
-            <span onClick={() => setShowPassword((prev) => !prev)}>
-              {ShowPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            <span 
+            className="absolute right-3 mx-auto top-[38px] cursor-pointer"
+             onClick={() => setShowPassword((prev) => !prev)}>
+              {ShowPassword ? <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" /> : <AiOutlineEye fontSize={24} fill="#AFB2BF" />}
             </span>
           </label>
 
           {/* confirm password */}
-          <label>
-            <p>
-              Confirm Password <sup>*</sup>
+          <label className="w-full relative">
+            <p className="text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]">
+              Confirm Password <sup className="text-pink-200">*</sup>
             </p>
             <input
+             className="bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]"
               required
               type={confirmPassword ? "text" : "password"}
               value={formData.confirmPassword}
@@ -127,8 +134,10 @@ const SignupForm = ({ setIsLoggedIn }) => {
               onChange={changeHandler}
               placeholder="Confirm Password"
             />
-            <span onClick={() => setConfirmPassword((prev) => !prev)}>
-              {confirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            <span 
+            className="absolute right-3 mx-auto top-[74px] cursor-pointer"
+            onClick={() => setConfirmPassword((prev) => !prev)}>
+              {confirmPassword ? <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" /> : <AiOutlineEye fontSize={24} fill="#AFB2BF" />}
             </span>
           </label>
         </div>
