@@ -14,7 +14,11 @@ const SignupForm = ({ setIsLoggedIn }) => {
   });
 
   const [ShowPassword, setShowPassword] = useState(false);
+
+  const [accountType, setAccountType] = useState('student');
+
   const [confirmPassword, setConfirmPassword] = useState(false);
+
   function changeHandler(event) {
     setFormData((prev) => ({
       ...prev,
@@ -42,9 +46,15 @@ const SignupForm = ({ setIsLoggedIn }) => {
   return (
     <div>
       {/* student-instructor-tab */}
-      <div>
-        <button>Student</button>
-        <button>Instructor</button>
+      <div className="flex rounded-full bg-richblack-800 gap-x-1 my-6 p-1 max-w-max">
+        <button
+         className={`${accountType === "student" ? "bg-richblack-900 text-richblack-5":"bg-transparent text-richblack-200"} py-2 px-5 rounded-full transition-all duration-200`}
+        onClick={()=>setAccountType("student")}
+        >Student</button>
+        <button
+        className={`${accountType === "instructor" ? "bg-richblack-900 text-richblack-5":"bg-transparent text-richblack-200"} py-2 px-5 rounded-full transition-all duration-200`}
+        onClick={()=>setAccountType("instructor")}
+        >Instructor</button>
       </div>
 
       <form onSubmit={submitHandler}>
