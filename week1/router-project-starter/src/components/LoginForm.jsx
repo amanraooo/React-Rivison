@@ -51,7 +51,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
           Password <sup className="text-pink-200">*</sup>
         </p>
         <input
-          className="bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px] hover:bg-blue-100
+          className="bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]
           border-b-white"
           required
           type={ShowPassword ? "text" : "password"}
