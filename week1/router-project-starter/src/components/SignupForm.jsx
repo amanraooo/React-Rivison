@@ -15,7 +15,7 @@ const SignupForm = ({ setIsLoggedIn }) => {
 
   const [ShowPassword, setShowPassword] = useState(false);
 
-  const [accountType, setAccountType] = useState('student');
+  const [accountType, setAccountType] = useState("student");
 
   const [confirmPassword, setConfirmPassword] = useState(false);
 
@@ -36,10 +36,15 @@ const SignupForm = ({ setIsLoggedIn }) => {
     }
     setIsLoggedIn(true);
     toast.success("Account Created");
-    const accdeatils = {
+    const accDetails = {
       ...formData,
     };
-    console.log("acc deatils", accdeatils);
+
+    const finalData = {
+      ...accDetails,
+      accountType,
+    };
+    console.log("acc details", finalData);
     navigate("/dashboard");
   }
 
@@ -48,13 +53,25 @@ const SignupForm = ({ setIsLoggedIn }) => {
       {/* student-instructor-tab */}
       <div className="flex rounded-full bg-richblack-800 gap-x-1 my-6 p-1 max-w-max">
         <button
-         className={`${accountType === "student" ? "bg-richblack-900 text-richblack-5":"bg-transparent text-richblack-200"} py-2 px-5 rounded-full transition-all duration-200`}
-        onClick={()=>setAccountType("student")}
-        >Student</button>
+          className={`${
+            accountType === "student"
+              ? "bg-richblack-900 text-richblack-5"
+              : "bg-transparent text-richblack-200"
+          } py-2 px-5 rounded-full transition-all duration-200`}
+          onClick={() => setAccountType("student")}
+        >
+          Student
+        </button>
         <button
-        className={`${accountType === "instructor" ? "bg-richblack-900 text-richblack-5":"bg-transparent text-richblack-200"} py-2 px-5 rounded-full transition-all duration-200`}
-        onClick={()=>setAccountType("instructor")}
-        >Instructor</button>
+          className={`${
+            accountType === "instructor"
+              ? "bg-richblack-900 text-richblack-5"
+              : "bg-transparent text-richblack-200"
+          } py-2 px-5 rounded-full transition-all duration-200`}
+          onClick={() => setAccountType("instructor")}
+        >
+          Instructor
+        </button>
       </div>
 
       <form onSubmit={submitHandler}>
@@ -92,7 +109,7 @@ const SignupForm = ({ setIsLoggedIn }) => {
         </div>
 
         {/* email address */}
-        <label >
+        <label>
           <p className="text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]">
             Email Address <sup className="text-pink-200">*</sup>
           </p>
