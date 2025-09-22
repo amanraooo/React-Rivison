@@ -8,4 +8,4 @@ const Home = ({ isLoggedIn }) => {
   );
 };
 
-export default Home;
+export default ;
