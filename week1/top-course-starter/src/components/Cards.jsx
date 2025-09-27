@@ -15,16 +15,12 @@ const Cards = ({ courses }) => {
   };
 
   return (
-    <div>
-      {!courses ? (
-        <div>
-          <p>No data found</p>
-        </div>
-      ) : (
-        getCourses().map((course) => {
-          return <Card key={course.id} course={course} />;
-        })
-      )}
+    <div className="flex flex-wrap justify-center gap-4 mb-4">
+      {
+        getCourses().map((course)=>(
+          <Card key={course.id} course={course}/>
+        ))
+      }
     </div>
   );
 };

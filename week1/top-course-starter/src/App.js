@@ -44,7 +44,8 @@ const App = () => {
       </div>
 
       {/* all cards */}
-      <div>
+      <div className="w-11/12 max-w-[1200px] 
+        mx-auto flex flex-wrap justify-center items-center min-h-[50vh]">
         {
           loading ? (<Spinner />) :
            (<Cards courses={courses} />
