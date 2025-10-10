@@ -6,7 +6,7 @@ const Cards = (props) => {
   let courses = props.courses;
   const [likedCourses, setLikedCourses] = useState([]);
 
-  //reurns list of all courses rec from API
+  //returns list of all courses rec from API
   function getCourses() {
     let allCourses = [];
     Object.values(courses).forEach((array) => {
