@@ -8,7 +8,6 @@ const Card = (props) => {
   let setLikedCourses = props.setLikedCourses;
 
   function clickHandler() {
-
     if (likedCourses.includes(course.id)) {
       setLikedCourses((prev) => prev.filter((cid) => cid !== course.id));
       toast.warning("liked removed");
@@ -16,7 +15,7 @@ const Card = (props) => {
     else {
       if (likedCourses.length === 0) {
         setLikedCourses([course.id]);
-      }
+      } 
       else {
         setLikedCourses((prev) => [...prev, course.id]);
       }
@@ -34,7 +33,13 @@ const Card = (props) => {
             grid place-items-center"
         >
           <button onClick={clickHandler}>
-            <FcLike fontSize="1.75rem" />
+            {
+            likedCourses.includes(course.id) ? (
+              <FcLike fontSize="1.75rem" />
+            ) : (
+              < FcLikePlaceholder fontSize="1.75rem" />
+            )
+            }
           </button>
         </div>
       </div>

@@ -10,6 +10,7 @@ const App = () => {
 
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState(filterData[0].title);
 
 
   async function fetchData() {
@@ -40,7 +41,10 @@ const App = () => {
       <div className="bg-bgDark2">
         {/* all filters */}
         <div>
-          <Filter filterData={filterData} />
+          <Filter 
+          filterData={filterData}
+          category={category}
+          setCategory={setCategory} />
 
         </div>
 
