@@ -1,14 +1,17 @@
 import React from "react";
 import Card from "./Card";
+import { useState } from "react";
 
-const Cards = ({ courses }) => {
-  let allCourses = [];
+const Cards = (props ) => {
+  let courses = props.courses;
+  const [likedCourses, setLikedCourses] = useState([]);
 
   //reurns list of all courses rec from API
-  const getCourses = () => {
+  function getCourses(){
+    let allCourses =[];
     Object.values(courses).forEach((array) => {
-      array.forEach((course) => {
-        allCourses.push(course);
+      array.forEach((courseData) => {
+        allCourses.push(courseData);
       });
     });
     return allCourses;
@@ -18,7 +21,11 @@ const Cards = ({ courses }) => {
     <div className="flex flex-wrap justify-center gap-4 mb-4">
       {
         getCourses().map((course)=>(
-          <Card key={course.id} course={course}/>
+          <Card 
+          key={course.id} 
+          course={course}
+          likedCourses={likedCourses}
+          setLikedCourses={setLikedCourses}/>
         ))
       }
     </div>
