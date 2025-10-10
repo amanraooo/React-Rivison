@@ -53,7 +53,8 @@ const App = () => {
         mx-auto flex flex-wrap justify-center items-center min-h-[50vh]">
           {
             loading ? (<Spinner />) :
-              (<Cards courses={courses} />
+              (<Cards courses={courses} 
+              category={category}/>
               )
           }
         </div>
