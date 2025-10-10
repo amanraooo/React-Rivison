@@ -1,27 +1,29 @@
 import React from "react";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
-import {toast} from 'react-toastify';
+import { toast } from "react-toastify";
 
 const Card = (props) => {
   let course = props.course;
   let likedCourses = props.likedCourses;
   let setLikedCourses = props.setLikedCourses;
 
-  function clickHandler(){
-    if(likedCourses.includes(course.id)){
-      setLikedCourses((prev)=> prev.filter((cid)=>(cid !== course.id)))
+  function clickHandler() {
+
+    if (likedCourses.includes(course.id)) {
+      setLikedCourses((prev) => prev.filter((cid) => cid !== course.id));
       toast.warning("liked removed");
-    }
-    else{
-      if(likedCourses.length === 0){
+    } 
+    else {
+      if (likedCourses.length === 0) {
         setLikedCourses([course.id]);
       }
-      else{
-        setLikedCourses((prev)=> [...prev, course.id])
+      else {
+        setLikedCourses((prev) => [...prev, course.id]);
       }
-      toast.success("Liked Successfully")
+      toast.success("Liked Successfully");
     }
   }
+
   return (
     <div className="w-[300px] bg-bgDark bg-opacity-80 rounded-md overflow-hidden">
       <div className="relative">
