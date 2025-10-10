@@ -10,7 +10,7 @@ const Filter = ({filterData, category, setCategory}) => {
         return <button
         onClick={()=>filterHandler(data.title)}
          key={data.id}
-         className={`text-lg px-2 py-1  rounded-md font-medium text-white bg-black hover:bg-opacity-50 hover:text-black border-2 transition-all duration-300`}
+         className={`text-lg px-2 py-1 rounded-md font-medium text-white bg-black hover:bg-opacity-50 hover:text-black border-2 transition-all duration-300`}
          >{data.title}</button>;
       })}
     </div>
