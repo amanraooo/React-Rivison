@@ -1,43 +1,38 @@
 import React from "react";
 import {FaQuoteLeft,FaQuoteRight, FaGem} from "react-icons/fa";
 
+
 const Card = (props) => {
   let reviews = props.reviews;
   return (
-    <div>
+    <div className="flex flex-col md:relative">
 
-      <div>
-        <img src={reviews.image} />
+      <div className="absolute top-[-7rem] z-[10] mx-auto">
+        <img className="aspect-square rounded-full w-[140px] h-[140px] z-[25]"
+        src={reviews.image} />
+        <div className="w-[140px] h-[140px] bg-violet-500 rounded-full absolute top-[-6px] z-[-10] left-[10px]"></div>
       </div>
 
-      <div>
-        <p>{reviews.name} </p>
+      <div className="text-center mt-7">
+        <p className="font-bold text-2xl ">{reviews.name} </p>
       </div>
 
-      <div>
-        <p> {reviews.job}</p>
+      <div className="text-center mt-1">
+        <p className="text-violet-300 uppercase text-sm"> {reviews.job}</p>
       </div>
 
-    <div>
+    <div className="text-violet-400 mx-auto mt-5 ">
       <FaQuoteLeft/>
     </div>
 
-<div>
+<div className="text-center mt-4 text-slate-500 ">
         <p> {reviews.text}</p>
       </div>
 
-    <div>
+    <div className="text-violet-400 mx-auto mt-5 ">
       <FaQuoteRight/>
     </div>
 
-    <div>
-      <button>+</button>
-      <button>-</button>
-    </div>
-
-<div>
-  <button>Surprise me </button>
-</div>
 
     </div>
   );
