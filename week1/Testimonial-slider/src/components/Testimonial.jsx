@@ -49,15 +49,14 @@ const Testimonial = (props) => {
 
       <div className="mt-5">
         <button
-  onClick={SurpriseMeHandler}
-  className="bg-yellow-500 text-white font-semibold text-lg px-10 py-2 rounded-md
+          onClick={SurpriseMeHandler}
+          className="bg-yellow-500 text-white font-semibold text-lg px-10 py-2 rounded-md
              shadow-[0_4px_15px_rgba(255,215,0,0.4),0_2px_5px_rgba(0,0,0,0.1)]
              hover:shadow-[0_6px_20px_rgba(255,223,0,0.5),0_3px_8px_rgba(0,0,0,0.15)] hover:bg-yellow-600
              transition-all duration-300"
->
-  Surprise me
-</button>
-
+        >
+          Surprise me
+        </button>
       </div>
     </div>
   );

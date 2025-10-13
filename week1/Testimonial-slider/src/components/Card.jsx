@@ -11,11 +11,12 @@ const Card = (props) => {
           src={reviews.image}
         />
         {/* <div className="w-[140px] h-[140px] bg-violet-500 rounded-full absolute top-[-6px] z-[-10] left-[10px] hover:shadow-lg"></div> */}
-        <div className="w-[140px] h-[140px] rounded-full absolute top-[-6px] left-[10px]
+        <div
+          className="w-[140px] h-[140px] rounded-full absolute top-[-6px] left-[10px]
     bg-gradient-to-r from-blue-600 to-red-700
     shadow-[0_0_20px_rgba(0,119,255,0.4),0_0_30px_rgba(198,40,40,0.3)]
-    z-[-10]">
-</div>
+    z-[-10]"
+        ></div>
       </div>
 
       <div className="text-center mt-7">
