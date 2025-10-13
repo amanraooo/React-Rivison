@@ -26,12 +26,13 @@ const Testimonial = (props) => {
   }
 
   function SurpriseMeHandler(){
-
+      let randomIndex = Math.floor(Math.random() * reviews.length);
+      setIndex(randomIndex);
   }
 
   return (
-    <div>
-      <Card reviews={reviews[0]} />
+    <div className="w-[85vw] md:w-[700px] bg-white flex flex-col justify-center mt-10 p-10 tranisition-all duration-700 hover:shadow-xl">
+      <Card reviews={reviews[index]} />
 
       <div className="flex text-3xl mt-5 gap-3 text-violet-400 font-bold text-center mx-auto">
         <button
