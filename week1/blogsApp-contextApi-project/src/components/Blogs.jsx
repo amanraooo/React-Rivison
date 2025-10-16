@@ -7,15 +7,15 @@ const Blogs = () => {
   const {loading,posts} = useContext(AppContext);
 
   return (
-    <div className='w-[11/12] max-w-[700px] py-8 flex flex-col gap-y-7 mt-[64px]'>
+    <div className='w-[11/12] max-w-[700px] py-8 flex flex-col gap-y-7 mt-[68px] mb-[71px] justify-center items-center h-screen'>
       {
         loading ? 
         (<Spinner/>) :
        
         (
           posts.length === 0 ?
-          (<div>
-            <p>No Post Found</p>
+          (<div className="flex flex-col justify-center items-center">
+            <p className='font-bold text-4xl'>No Post Found : ( </p>
           </div>):
           (posts.map((post)=> (
             <div key={post.id} 
