@@ -5,8 +5,9 @@ import Spinner from './Spinner';
 
 const Blogs = () => {
   const {loading,posts} = useContext(AppContext);
+
   return (
-    <div>
+    <div className='w-[11/12] max-w-[700px] py-8 flex flex-col gap-y-7 '>
       {
         loading ? 
         (<Spinner/>) :
@@ -17,19 +18,24 @@ const Blogs = () => {
             <p>No Post Found</p>
           </div>):
           (posts.map((post)=> (
-            <div key={post.id}>
-              <p className='font-bold'>{post.title}</p>
-              <p>
-                By <span>{post.author}</span>
-                on <span>{post.category}</span>
+            <div key={post.id} 
+            className='shadow-xl py-4 px-4'
+             >
+              <p className='hover:text-shadow-xl font-bold text-lg'>{post.title}</p>
+              <p className='text-sm mt-[4px]'>
+                By <span className='italic'>{post.author}</span>
+                on <span className='underline font-bold'>{post.category}</span>
               </p>
-              <p>Posted on {post.date}</p>
-              <p>{post.content}</p>
-              <div>
+              <p className='text-sm mt-[4px]'>Posted on {post.date}</p>
+              <p className='text-md mt-[14px]'>{post.content}</p>
+              <div className='flex gap-x-3'>
                 {post.tags.map((tag, index)=>{
-                  return <span key={index}>{`#${tag}`}</span>
+                  return <span 
+                  className='text-blue-700 underline font-bold text-sm mt-[5px]' 
+                  key={index}>{`#${tag}`}</span>
                 })}
               </div>
+              
             </div>
           )))
         )
