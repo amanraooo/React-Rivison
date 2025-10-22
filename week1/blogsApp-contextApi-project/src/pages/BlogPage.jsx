@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useLocation, useNavigation } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import { baseUrl } from '../baseUrl';
+import Header from '../components/Header';
 
 const BlogPage = () => {
 
@@ -37,10 +38,35 @@ const BlogPage = () => {
       fetchRelatedBlogs();
     }
   },[location.pathname])
-  
+
   return (
     <div>
-      
+      <Header/>
+      <div>
+        <button
+        onClick={()=>navigation(-1)}
+        >
+          back
+        </button>
+      </div>
+      {
+        loading ? (<p>Loading</p>):
+        blog ? (
+          <div>
+            <BlogDetails post={blog}/>
+            <h2>Related Blogs</h2>
+            {
+              relatedBlogs.map((post)=>{
+                <div key={post.id}>
+                  <BlogDetails post={post}/>
+                </div>
+              })
+            }
+          </div>
+        ):(
+          <div>No blog found</div>
+        )
+      }
     </div>
   )
 }
