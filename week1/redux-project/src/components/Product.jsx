@@ -1,4 +1,20 @@
-const Product = ({post}) => {
+import { useDispatch, useSelector } from "react-redux";
+
+
+const Product = ({ post }) => {
+  const { cart } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+
+  const addToCart = () => {
+    dispatch(add(post));
+    toast.success("Item added to cart");
+  }
+
+  const removeFromCart = () => {
+    dispatch(remove(post.id));
+    toast.success("Item removed from cart");
+  }
   return (
     <div>
       <div>
@@ -10,20 +26,22 @@ const Product = ({post}) => {
       </div>
 
       <div>
-        <img src={post.image}/>
+        <img src={post.image} />
       </div>
 
       <div>
         <p>{post.price}</p>
       </div>
 
-      <button>
-        {
-          true ? 
-        <p>Remove Item</p> :
-        <p>Add to cart</p>
-        }
-      </button>
+
+      {
+        cart.some((p) => p.id === post.id) ?
+          <button onClick={removeFromCart}>
+            Remove Item
+          </button> :
+          <button onClick={addToCart}
+          >Add to cart</button>
+      }
 
     </div>
   );
