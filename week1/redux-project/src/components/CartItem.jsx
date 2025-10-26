@@ -10,7 +10,7 @@ const CartItem = ({ item, itemIndex }) => {
 
   const removeFromCart = () => {
     dispatch(remove(item.id))
-    toast.success("removed from cart");
+    toast.error("removed from cart");
   }
 
   return (
