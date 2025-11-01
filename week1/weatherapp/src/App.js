@@ -28,9 +28,27 @@ function App() {
     }
   }
 
+  //changes bg color according the  weather condition
+  const getBg =()=>{
+    if(!data || !data.weather) return "from-slate-800 to-slate-900";
+
+    const main = data.weather[0].main.toLowerCase();
+
+    if(main.includes("clear"))
+      return "from-yellow-400 to-orange-500";
+    if(main.includes("cloud")) 
+      return "from-gray-600 to-blue-700";
+    if(main.includes("rain")) 
+      return "from-purple-700 to-gray-900";
+    if(main.includes("snow"))
+      return "from-blue-200 to-white";
+
+    return "from-slate-800 to-slate-900"
+  }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex justify-center items-center px-4">
+    <div className={`min-h-screen text-white flex justify-center items-center px-4 bg-gradient-to-br ${getBg()}`}>
+
       <div className="w-full max-w-md bg-gray-800 bg-opacity-40 backdrop-blur-md rounded-2xl p-6 shadow-xl">
 
         <div className="flex gap-2 mb-4">
