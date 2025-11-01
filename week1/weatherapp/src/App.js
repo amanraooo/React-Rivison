@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Loader from "./components/Loader";
+import { WiDaySunny, WiCloud, WiRain, WiSnow } from "react-icons/wi";
 
 function App() {
 
@@ -30,10 +31,11 @@ function App() {
       );
 
       const forecastjson = await res2.json();
+
       // showing only 5 cards
       setForecast(forecastjson.list.slice(0, 5));
-
       setData(data);
+
       setloading(false);
 
     } catch (e) {
@@ -74,16 +76,15 @@ function App() {
       );
 
       const json = await res.json();
-      setData(json);
 
       const res2 = await fetch(
         `https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&appid=${API_KEY}`
       );
 
       const forecastjson = await res2.json();
+
       setForecast(forecastjson.list.slice(0, 5));
-
-
+      setData(json);
 
       setloading(false);
 
