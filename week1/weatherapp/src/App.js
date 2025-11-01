@@ -7,7 +7,7 @@ function App() {
   const [data, setData] = useState(null);
   const [loading, setloading] = useState(false);
 
-  const  [forecast,setForecast]= useState(null);
+  const [forecast, setForecast] = useState(null);
 
   const API_KEY = "980f15aef7f437b5aea453f4b17a8b51"
 
@@ -26,12 +26,12 @@ function App() {
 
       // response for forcast 
       const res2 = await fetch(
- `https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&appid=${API_KEY}`
-);
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&appid=${API_KEY}`
+      );
 
-const forecastjson = await res2.json();
-// showing only 5 cards
-setForecast(forecastjson.list.slice(0,5));
+      const forecastjson = await res2.json();
+      // showing only 5 cards
+      setForecast(forecastjson.list.slice(0, 5));
 
       setData(data);
       setloading(false);
@@ -77,11 +77,11 @@ setForecast(forecastjson.list.slice(0,5));
       setData(json);
 
       const res2 = await fetch(
- `https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&appid=${API_KEY}`
-);
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&appid=${API_KEY}`
+      );
 
-const forecastjson = await res2.json();
-setForecast(forecastjson.list.slice(0,5));
+      const forecastjson = await res2.json();
+      setForecast(forecastjson.list.slice(0, 5));
 
 
 
@@ -140,21 +140,21 @@ setForecast(forecastjson.list.slice(0,5));
         )}
 
         {
-        forecast && (
-  <div className="mt-6 grid grid-cols-5 gap-2 text-center text-sm">
+          forecast && (
+            <div className="mt-6 grid grid-cols-5 gap-2 text-center text-sm">
 
-    {
-    forecast.map((item, i) => (
+              {
+                forecast.map((item, i) => (
 
-      <div key={i} className="bg-white/10 p-2 rounded-lg">
-        
-        <p>{item.dt_txt.slice(11,16)}</p>
-        <p>{Math.round(item.main.temp)}°C</p>
-      </div>
+                  <div key={i} className="bg-white/10 p-2 rounded-lg">
 
-    ))}
-  </div>
-)}
+                    <p>{item.dt_txt.slice(11, 16)}</p>
+                    <p>{Math.round(item.main.temp)}°C</p>
+                  </div>
+
+                ))}
+            </div>
+          )}
 
       </div>
     </div>
