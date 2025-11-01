@@ -11,7 +11,7 @@ function App() {
 
   const handleSearh = async () => {
 
-    if (!city.trim) return;
+    if (!city.trim()) return;
 
     setloading(true);
     setData(null);
