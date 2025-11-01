@@ -24,39 +24,55 @@ function App() {
       setData(data);
       setloading(false);
     } catch (e) {
-
+      console.error("cant fetch info")
     }
   }
 
+
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="enter city"
-        value={city}
-        onChange={(e) => { setCity(e.target.value) }}
-      />
+    <div className="min-h-screen bg-gray-900 text-white flex justify-center items-center px-4">
+      <div className="w-full max-w-md bg-gray-800 bg-opacity-40 backdrop-blur-md rounded-2xl p-6 shadow-xl">
 
-      <button onClick={handleSearh}>Search</button>
+        <div className="flex gap-2 mb-4">
+          <input
+            type="text"
+            placeholder="Enter city"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="flex-1 bg-gray-700 px-3 py-2 rounded-md outline-none"
+          />
 
-      {
-        loading && <Loader />
-      }
+          <button
+            onClick={handleSearh}
+            className="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-md"
+          >
+            Search
+          </button>
+        </div>
 
-      {
-        data && data.main && (
-          <div>
-            <h2>{data.name}, {data.sys.country}</h2>
-            <h1>{data.main.temp}°C</h1>
-            <p>Feels like: {data.main.feels_like}°C</p>
-            <p>Humidity: {data.main.humidity}%</p>
-            <p>Wind: {data.wind.speed} m/s</p>
+        {loading && (
+          <div className="flex justify-center py-4">
+            <Loader />
           </div>
-        )
-      }
+        )}
 
+        {data && data.main && (
+          <div className="text-center space-y-2 mt-4">
+            <h2 className="text-2xl font-semibold">{data.name}, {data.sys.country}</h2>
+            <h1 className="text-5xl font-bold">{data.main.temp}°C</h1>
+            <p className="capitalize text-lg">{data.weather[0].description}</p>
+
+            <div className="mt-4 text-sm space-y-1 opacity-80">
+              <p>Feels like: {data.main.feels_like}°C</p>
+              <p>Humidity: {data.main.humidity}%</p>
+              <p>Wind: {data.wind.speed} m/s</p>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
+
 }
 
 export default App;
