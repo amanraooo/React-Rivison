@@ -29,23 +29,43 @@ function App() {
   }
 
   //changes bg color according the  weather condition
-  const getBg =()=>{
-    if(!data || !data.weather) return "from-slate-800 to-slate-900";
+  const getBg = () => {
+    if (!data || !data.weather) return "from-slate-800 to-slate-900";
 
     const main = data.weather[0].main.toLowerCase();
 
-    if(main.includes("clear"))
+    if (main.includes("clear"))
       return "from-yellow-400 to-orange-500";
-    if(main.includes("cloud")) 
+    if (main.includes("cloud"))
       return "from-gray-600 to-blue-700";
-    if(main.includes("rain")) 
+    if (main.includes("rain"))
       return "from-purple-700 to-gray-900";
-    if(main.includes("snow"))
+    if (main.includes("snow"))
       return "from-blue-200 to-white";
 
     return "from-slate-800 to-slate-900"
   }
 
+  // current location weather
+  const handleGPS = () => {
+    if (!navigator.geolocation) return;
+
+    setloading(true);
+    setData(null);
+
+    navigator.geolocation.getCurrentPosition(async (pos) => {
+      const { latitude, longitude } = pos.coords;
+
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
+      );
+
+      const json = await res.json();
+      setData(json);
+      setloading(false);
+
+    })
+  }
   return (
     <div className={`min-h-screen text-white flex justify-center items-center px-4 bg-gradient-to-br ${getBg()}`}>
 
@@ -66,7 +86,15 @@ function App() {
           >
             Search
           </button>
+
+          <button
+            onClick={handleGPS}
+            className="px-3 py-2 bg-green-500 hover:bg-green-600 rounded-md"
+          >
+            GPS
+          </button>
         </div>
+
 
         {loading && (
           <div className="flex justify-center py-4">
