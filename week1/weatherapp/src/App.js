@@ -63,36 +63,51 @@ function App() {
 
   // current location weather
   const handleGPS = () => {
-    if (!navigator.geolocation) return;
+  if (!navigator.geolocation) return;
 
-    setloading(true);
-    setData(null);
+  setloading(true);
+  setData(null);
 
-    navigator.geolocation.getCurrentPosition(async (pos) => {
-      const { latitude, longitude } = pos.coords;
+  navigator.geolocation.getCurrentPosition(async (pos) => {
+    const { latitude, longitude } = pos.coords;
 
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
-      );
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
+    );
 
-      const json = await res.json();
+    const json = await res.json();
 
-      const res2 = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&appid=${API_KEY}`
-      );
+    const res2 = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${json.coord.lat}&lon=${json.coord.lon}&units=metric&appid=${API_KEY}`
+    );
 
-      const forecastjson = await res2.json();
+    const forecastjson = await res2.json();
+    setForecast(forecastjson.list.slice(0, 5));
+    setData(json);
+    setloading(false);
+  });
+};
 
-      setForecast(forecastjson.list.slice(0, 5));
-      setData(json);
 
-      setloading(false);
+  //showing icons according to the weather
+  const getIcon =(main)=>{
+    main = main.toLowerCase();
 
-    })
+    if(main.includes("clear"))
+      return <WiDaySunny size={30}/>
+      if(main.includes("cloud")) 
+      return <WiCloud size={30}/>
+      if(main.includes("rain")) 
+      return <WiRain size={30}/>
+      if(main.includes("snow")) 
+      return <WiSnow size={30}/>
+
+      return <WiCloud size={30}/>
   }
   return (
-    <div className={`min-h-screen text-white flex justify-center items-center px-4 bg-gradient-to-br ${getBg()}`}>
+    <div className={`min-h-screen text-white flex flex-col justify-center items-center px-4 bg-gradient-to-br ${getBg()}`}>
 
+    <h1 className="text-4xl text-gray-400 mb-4">Weather App</h1>
       <div className="w-full max-w-md bg-gray-800 bg-opacity-40 backdrop-blur-md rounded-2xl p-6 shadow-xl">
 
         <div className="flex gap-2 mb-4">
@@ -147,8 +162,10 @@ function App() {
               {
                 forecast.map((item, i) => (
 
-                  <div key={i} className="bg-white/10 p-2 rounded-lg">
-
+                  <div key={i} className="bg-white/10 p-2 rounded-lg flex flex-col items-center">
+                    {
+                      getIcon(item.weather[0].main)
+                    }
                     <p>{item.dt_txt.slice(11, 16)}</p>
                     <p>{Math.round(item.main.temp)}°C</p>
                   </div>
