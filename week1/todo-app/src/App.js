@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -6,26 +6,24 @@ function App() {
   const [task, setTask] = useState("")
   const [todos, setTodos] = useState([]);
 
-  // add todo
   const addTodo = () => {
     if (task.trim() === "") return;
 
     const newTodo = {
       id: Date.now(),
       text: task,
-      completed: false
+      completed: false,
+      isEditing: false
     }
 
     setTodos([...todos, newTodo]);
     setTask("");
   }
 
-  // delete todo
   const deleteTodo = (id) => {
     setTodos(todos.filter(t => t.id !== id))
   }
 
-  //Toggle Todo
   const toggleTodo = (id) => {
     setTodos(
       todos.map(t =>
@@ -34,6 +32,33 @@ function App() {
       )
     )
   }
+
+  const editTodo =(id)=>{
+    setTodos(
+      todos.map(t=>
+        t.id === id ? {...t, isEditing: true} : t
+      )
+    )
+  }
+
+  const saveTodo =(id, newText)=>{
+    setTodos(
+      todos.map(t=>
+        t.id === id ? {...t, text: newText, isEditing:false}:t
+      )
+    )
+  }
+
+  useEffect(()=>{
+    const saved = JSON.parse(localStorage.getItem("todos")) || []
+    setTodos(saved)
+  },[])
+
+  useEffect(()=>{
+    localStorage.setItem("todos", JSON.stringify(todos))
+  },[todos])
+
+
 
   return (
     <div>
@@ -53,12 +78,32 @@ function App() {
               <input
                 type="checkbox"
                 checked={todo.completed}
-                onChange={(e) => toggleTodo(todo.id)}
+                onChange={() => toggleTodo(todo.id)}
               />
 
-              <span >{todo.text}</span>
+              {
+                todo.isEditing
+                  ? (
+                    <input
+                      value={todo.text}
+                      onChange={(e)=> saveTodo(todo.id, e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") saveTodo(todo.id, e.target.value)
+                      }}
+                    />
+                  )
+                  : (
+                    <span>{todo.text}</span>
+                  )
+              }
 
               <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+
+              {
+                !todo.isEditing &&
+                <button onClick={() => editTodo(todo.id)}>Edit</button>
+              }
+
             </div>
           ))
         }
